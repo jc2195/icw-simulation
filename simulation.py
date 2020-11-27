@@ -208,11 +208,6 @@ def main():
 
     ap = argparse.ArgumentParser('Plot response curves')
 
-    # ap.add_argument('--md', type=list, default=[3.94], help='Mass array [3.94]')
-    # ap.add_argument('--ld', type=list, default=[1.98], help='Damping array [1.98]')
-    # ap.add_argument('--kd', type=list, default=[2100], help='Spring array [2100]')
-    # ap.add_argument('--f', type=float, default=0.25, help='Force [0.25]')
-
     ap.add_argument(
         '--hz', type=float, nargs=2, default=(0, 5),
         help='Frequency range [0 5]'
@@ -239,11 +234,6 @@ def main():
     l_list = [building_l] + [absorber_l for i in range(no_of_absorbers)]
     k_list = [building_k] + [absorber_mass * (i ** 2) for i in w_list]
     m_list = [building_mass] + [absorber_mass for i in range(no_of_absorbers)]
-
-    # md = [3.94, 0.2, 0.3, 0.15, 0.1, 0.05, 0.025, 0.11, 0.01, 0.02]
-    # ld = [1.98, 0.09, 0.10, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16, 0.17]
-    # kd = [2100, 100, 120, 130, 140, 150, 140, 130, 120, 110]
-    # f = 0.25
 
     # Generate matrices describing the system
 
