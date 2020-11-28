@@ -23,8 +23,8 @@ building_l = 1.98
 # Disturbance force applied to building in N
 building_force = 0.25
 
-# Damping rate of each absorber in Ns/m
-absorber_l = 0.01
+# Damping ratio of each absorber
+absorber_zeta = 0.115
 
 # The total mass of all absorbers. The mass of each absorber is the same (total mass / number of absorbers), as the frequency
 # they are tuned to is controlled by the spring stiffness (which is dictated by the supplied start and end frequencies)
@@ -231,9 +231,9 @@ def main():
     else:
         w_list = [(hz_start * 2 * np.pi) + (hz_gap * 2 * np.pi * i) for i in range(no_of_absorbers)]
 
-    l_list = [building_l] + [absorber_l for i in range(no_of_absorbers)]
     k_list = [building_k] + [absorber_mass * (i ** 2) for i in w_list]
     m_list = [building_mass] + [absorber_mass for i in range(no_of_absorbers)]
+    l_list = [building_l] + [(2 * absorber_zeta * (k_list[i + 1] * m_list[i + 1])**0.5) for i in range(no_of_absorbers)]
 
     # Generate matrices describing the system
 
